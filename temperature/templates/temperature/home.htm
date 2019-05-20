@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="home.css" media="screen" />
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>OnSign Test - Temperature </title>
@@ -39,7 +40,7 @@
                 </form>
             </div>
             <div class="card-footer text-center">
-                    Temperature at: [aqui vem a longitude], [aqui vem a latitude] is [aqui vem a temperatura]
+                Temperature at: [aqui vem a longitude], [aqui vem a latitude] is [aqui vem a temperatura]
             </div>
         </div>
     </body>
