@@ -22,8 +22,7 @@ def post_temperature(request):
         latitude = request.POST.get('latitude')
         longitude = request.POST.get('longitude')
         if not latitude or not longitude:
-            errors.append('Please enter a latitude and longitude value.')
-            #adicionar condicao caso nao de match com o regex
+            errors.append('Please type a latitude and longitude value.')
         elif regex.match(latitude) and regex.match(longitude):
             post_url = get_url(latitude, longitude)
             celsius = make_api_call(post_url)
@@ -33,5 +32,5 @@ def post_temperature(request):
                 "celsius": celsius
             })
         else:
-            errors.append('Please type a valid value. Exemples: "23.454", "12", "-12.342"')
+            errors.append('Please type a valid value. Examples: "23.454", "12", "-12.342"')
         return render(request, 'temperature/home.htm', {'errors': errors})
