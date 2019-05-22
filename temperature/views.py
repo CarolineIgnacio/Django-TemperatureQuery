@@ -16,7 +16,7 @@ def home(request):
 
 @csrf_exempt
 def post_temperature(request):
-    regex = re.compile(r'^([\-\d]{2,3}|[\d]{1,2})|[\-\d]{2,3}[\.\d]{1,4}|[\d]{1,2}[\.\d]{1,4}$')
+    regex = re.compile(r'^([\-]?[\d]{1,2}[\.]?[\d]{1,4})$')
     errors = []
     if request.method == 'POST':
         latitude = request.POST.get('latitude')
@@ -33,5 +33,5 @@ def post_temperature(request):
                 "celsius": celsius
             })
         else:
-            errors.append('Please type a valid value.')
+            errors.append('Please type a valid value. Exemples: "23.454", "12", "-12.342"')
         return render(request, 'temperature/home.htm', {'errors': errors})
