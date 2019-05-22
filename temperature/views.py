@@ -16,7 +16,7 @@ def home(request):
 
 @csrf_exempt
 def post_temperature(request):
-    regex = re.compile(r'^[-\d]{2,3}|[\d]{2}$')
+    regex = re.compile(r'^([\-\d]{2,3}|[\d]{1,2})|[\-\d]{2,3}[\.\d]{1,4}|[\d]{1,2}[\.\d]{1,4}$')
     errors = []
     if request.method == 'POST':
         latitude = request.POST.get('latitude')
@@ -24,7 +24,7 @@ def post_temperature(request):
         if not latitude or not longitude:
             errors.append('Please enter a latitude and longitude value.')
             #adicionar condicao caso nao de match com o regex
-        else:
+        elif regex.match(latitude) and regex.match(longitude):
             post_url = get_url(latitude, longitude)
             celsius = make_api_call(post_url)
             return render(request, 'temperature/home.htm', {
@@ -32,4 +32,6 @@ def post_temperature(request):
                 "long": longitude,
                 "celsius": celsius
             })
+        else:
+            errors.append('Please type a valid value.')
         return render(request, 'temperature/home.htm', {'errors': errors})
