@@ -22,7 +22,7 @@ def post_temperature(request):
         latitude = request.POST.get('latitude')
         longitude = request.POST.get('longitude')
         if not latitude or not longitude:
-            errors.append('Please type a latitude and longitude value.')
+            errors.append('Latitude and longitude fields cannot be blank. Please type a valid value.')
         elif regex.match(latitude) and regex.match(longitude):
             post_url = get_url(latitude, longitude)
             celsius = make_api_call(post_url)
